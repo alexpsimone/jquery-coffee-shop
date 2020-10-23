@@ -9,6 +9,10 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <link href="static/coffee.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" 
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
+    crossorigin="anonymous">
+    </script>
 </head>
 <body>
 <div class="container">
@@ -46,54 +50,70 @@
 <script>
     "use strict";
 
-    var myImage = document.getElementById("coffee_image");
-    var myRevenueMessage = document.getElementById("revenue");
+    const myImage = $('#coffee_image');
+    // var myImage = document.getElementById("coffee_image");
+    const myRevenueMessage = $('#revenue');
+    // var myRevenueMessage = document.getElementById("revenue");
 
-    var drinksOrdered = [];
+    const drinksOrdered = [];
 
-    myImage.src = "static/coffee_beans.jpg";
-    myImage.addEventListener('click', function () { makeCoffee("brew"); });
+    myImage.attr('src', 'static/coffee_beans.jpg');
+    // myImage.src = "static/coffee_beans.jpg";
+    myImage.on('click', makeCoffee("brew"));
+    // myImage.addEventListener('click', function () { makeCoffee("brew"); });
 
     // Append the drink_type to drinks_ordered and use console.log to view
     // the output.
 
     function makeCoffee(drinkType) {
+
         drinksOrdered.push(drinkType);
         console.log(drinksOrdered);
-
         var myRevenue = revenue();
-        myRevenueMessage.innerHTML = "Today's revenues: " + myRevenue;
 
-        myImage.setAttribute('src', "static/coffee_machine.jpg");
+        myRevenueMessage.html(`Today's revenues: ${myRevenue}`)
+        // myRevenueMessage.innerHTML = "Today's revenues: " + myRevenue;
+
+        myImage.attr('src', 'static/coffee_machine.jpg');
+        // myImage.setAttribute('src', "static/coffee_machine.jpg");
 
         setTimeout(function () {
-            myImage.setAttribute('src', "static/coffee_mug.jpg");
+            myImage.attr('src', 'static/coffee_mug.jpg');
+            // myImage.setAttribute('src', "static/coffee_mug.jpg");
+
+            setTimeout(function () {
+                myImage.attr('src', 'static/coffee_beans.jpg');
+                // myImage.setAttribute('src', "static/coffee_beans.jpg");
+            }, 4000);
+
         }, 1500);
-
-        setTimeout(function () {
-            myImage.setAttribute('src', "static/coffee_beans.jpg");
-        }, 4000);
     }
 
 
     // Create variables for Espresso, Latte, and Hot Chocolate;
     // and add an event listener to each that calls makeCoffee.
 
-    var espresso = document.getElementById("espresso");
-    var latte = document.getElementById("latte");
-    var hotChocolate = document.getElementById("hot-chocolate");
+    const espresso = $('#espresso');
+    // var espresso = document.getElementById("espresso");
+    const latte = $('#latte');
+    // var latte = document.getElementById("latte");
+    const hotChocolate = $('#hot-chocolate');
+    // var hotChocolate = document.getElementById("hot-chocolate");
 
-    espresso.addEventListener('click', function () {
-        makeCoffee("espresso");
-    });
+    espresso.on('click', makeCoffee('espresso'));
+    // espresso.addEventListener('click', function () {
+    //     makeCoffee("espresso");
+    // });
 
-    latte.addEventListener('click', function () {
-        makeCoffee("latte");
-    });
+    latte.on('click', makeCoffee('latte'));
+    // latte.addEventListener('click', function () {
+    //     makeCoffee("latte");
+    // });
 
-    hotChocolate.addEventListener('click', function () {
-        makeCoffee("hot chocolate");
-    });
+    hotChocolate.on('click', makeCoffee('hot chocolate'));
+    // hotChocolate.addEventListener('click', function () {
+    //     makeCoffee("hot chocolate");
+    // });
 
     // Use this JavaScript object to calculate profits for the day and log them
     // to the console.
