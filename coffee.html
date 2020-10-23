@@ -61,18 +61,17 @@
     myImage.on('click', makeCoffee);
     // myImage.addEventListener("click", makeCoffee);
 
-    function makeCoffee() { myImage.attr('src', 'static/coffee_machine.jpg');
+    function makeCoffee() { 
+        myImage.attr('src', 'static/coffee_machine.jpg');
         // myImage.src = "static/coffee_machine.jpg";
-
-         setTimeout(function() { 
-             myImage.attr('src', 'static/coffee_mug.jpg'); 
+        setTimeout(function() { 
+            myImage.attr('src', 'static/coffee_mug.jpg');
             //  myImage.setAttribute("src", "static/coffee_mug.jpg");
-        }, 1500);
-
-         setTimeout(function() { 
-            myImage.attr('src', 'static/coffee_beans.jpg');
-            //  myImage.setAttribute("src", "static/coffee_beans.jpg");
-         }, 4000);
+            setTimeout(function() { 
+                myImage.attr('src', 'static/coffee_beans.jpg');
+                //  myImage.setAttribute("src", "static/coffee_beans.jpg");
+            }, 4000);
+        }, 4000); 
     }
 
 </script>
